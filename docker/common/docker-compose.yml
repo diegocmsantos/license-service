@@ -1,0 +1,26 @@
+version: '2'
+services:
+  configserver:
+    image: diegocmsantos/tmx-confsvr:chapter3
+    ports:
+      - "8888:8888"
+    environment:
+      ENCRYPT_KEY:       "IMSYMMETRIC"
+  database:
+    image: postgres:9.5
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "{cipher}d279e6ef44734b68ded6badcc972232f028ac96cf263771eeb348037073662c8"
+      POSTGRES_DB:       "eagle_eye_local"
+  licensingservice:
+    image: diegocmsantos/tmx-licensing-service:chapter3
+    ports:
+      - "8080:8080"
+    environment:
+      PROFILE: "default"
+      CONFIGSERVER_URI: "http://configserver:8888"
+      CONFIGSERVER_PORT:   "8888"
+      DATABASESERVER_PORT: "5432"
+      ENCRYPT_KEY:       "IMSYMMETRIC"

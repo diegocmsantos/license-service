@@ -13,7 +13,7 @@ public class LicenseServiceController {
 
     @GetMapping("/{licenseId}")
     public ResponseEntity<License> getLicenses(@PathVariable("organizationId") String organizationId,
-                                              @PathVariable("licenseId") String licenseId) {
+                                               @PathVariable("licenseId") String licenseId) {
         return ResponseEntity.ok(new License()
                 .withId(licenseId)
                 .withProductName("Teleleco")
